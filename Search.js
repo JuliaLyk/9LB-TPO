@@ -13,7 +13,7 @@ class OnlineStoreTest {
             const searchInput = await this.driver.findElement(By.id('catalogSearch'));
             await searchInput.sendKeys(keyword, Key.RETURN);
             console.log('Перешло');
-            await this.driver.wait(until.titleContains(keyword), 5000); 
+            await this.driver.wait(until.elementTextContains(this.driver.findElement(By.xpath("//*[@id='j-result-page-1']/div[1]/div/ul/li[1]/dl/dt/a/span[2]")), keyword), 5000);
             
         } catch (error) {
             console.error('Произошла ошибка:', error);
