@@ -12,12 +12,20 @@ class OnlineStoreTest {
             await acceptButton.click(); // Нажимаем на кнопку
             const searchInput = await this.driver.findElement(By.id('catalogSearch'));
             await searchInput.sendKeys(keyword, Key.RETURN);
-            console.log('Перешло');
+            console.log('Перешли');
             await this.driver.wait(until.elementTextContains(this.driver.findElement(By.xpath("//*[@id='j-result-page-1']/div[1]/div/ul/li[1]/dl/dt/a/span[2]")), keyword), 5000);
-            
+            return true;
         } catch (error) {
             console.error('Произошла ошибка:', error);
             return null;
+        }
+    }
+    
+    async close() {
+        try {
+            await this.driver.quit(); // закрываем браузер
+        } catch (error) {
+            console.error('Произошла ошибка при закрытии браузера:', error);
         }
     }
 }
@@ -25,5 +33,6 @@ class OnlineStoreTest {
 (async () => {
     const onlineStoreTest = new OnlineStoreTest();
     const searchResult = await onlineStoreTest.searchProduct('Samsung');
-    await onlineStoreTest.close();
+    console.log(searchResult);
+    await onlineStoreTest.close(); // закрываем браузер после выполнения теста
 })();
