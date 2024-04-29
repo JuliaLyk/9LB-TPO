@@ -12,6 +12,7 @@ class OnlineStoreTest {
             await acceptButton.click(); // Нажимаем на кнопку
             const searchInput = await this.driver.findElement(By.id('catalogSearch'));
             await searchInput.sendKeys(keyword, Key.RETURN);
+            console.log('Перешло');
             await this.driver.wait(until.titleContains(keyword), 5000); 
             
         } catch (error) {
